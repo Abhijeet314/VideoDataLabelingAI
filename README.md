@@ -1,130 +1,247 @@
-# Video Description Generator
+# 🎥 Advanced Video Analysis System
 
-An AI-powered tool that automatically generates detailed descriptions of videos by extracting frames, analyzing them with computer vision, and creating coherent summaries using large language models.
+A sophisticated video analysis tool that leverages state-of-the-art Vision-Language Models (VLMs) to provide detailed, frame-by-frame analysis of video content. Perfect for fitness analysis, sports technique evaluation, action recognition, and general video understanding.
 
-## Features
+## ✨ Features
 
-- **Frame Extraction**: Automatically extracts frames from video files at configurable intervals
-- **Image Captioning**: Uses Vision Transformer (ViT) + GPT-2 model to generate captions for each frame
-- **Intelligent Summarization**: Leverages Meta's Llama-3 70B model to create coherent video descriptions
-- **Batch Processing**: Processes multiple frames efficiently in batches
-- **GPU Support**: Automatically detects and uses CUDA if available for faster processing
+- **🧠 Advanced VLM Models**: Utilizes cutting-edge models like Llama Vision 90B for superior analysis quality
+- **⚡ Multiple Analysis Modes**: Choose between detailed, standard, or fast analysis based on your needs
+- **🎯 Specialized Analysis Types**: Action detection, detailed technical analysis, and scene understanding
+- **📊 Comprehensive Reports**: Generate structured summaries with timestamps and technical insights
+- **🔄 Fallback System**: Multiple model redundancy ensures reliable results
+- **💾 Export Capabilities**: Save detailed analysis reports in JSON format
+- **⏱️ Timestamp Tracking**: Frame-level timestamp information for precise analysis
 
-## How It Works
+## 🚀 Quick Start
 
-1. **Video Frame Extraction**: The script extracts frames from the input video at regular intervals (default: every 30th frame)
-2. **Image Analysis**: Each extracted frame is processed through a pre-trained ViT-GPT2 model to generate descriptive captions
-3. **Batch Processing**: Frames are processed in batches of 4 for optimal performance
-4. **Caption Aggregation**: All individual frame captions are combined into a single text
-5. **AI Summarization**: The combined captions are sent to Llama-3 70B via Together AI API to create a coherent, non-repetitive video description
+### Prerequisites
 
-## Prerequisites
-
-- Python 3.7+
-- CUDA-compatible GPU (optional, but recommended for faster processing)
+- Python 3.8+
 - Together AI API key
+- OpenCV compatible video files
 
-## Installation
+### Installation
 
-1. **Clone the repository**:
-```bash
-git clone <your-repo-url>
-cd video-description-generator
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/advanced-video-analysis.git
+   cd advanced-video-analysis
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   # Create a .env file
+   echo "TOGETHER_API_KEY=your_together_ai_api_key_here" > .env
+   ```
+
+4. **Run the analysis**
+   ```bash
+   python main.py
+   ```
+
+## 📋 Requirements
+
+Create a `requirements.txt` file with the following dependencies:
+
+```
+opencv-python>=4.8.0
+Pillow>=10.0.0
+tqdm>=4.65.0
+python-dotenv>=1.0.0
+together>=0.2.7
 ```
 
-2. **Install required dependencies**:
-```bash
-pip install opencv-python
-pip install transformers
-pip install torch torchvision
-pip install Pillow
-pip install tqdm
-pip install python-dotenv
-pip install together
-```
+## 🎮 Usage
 
-3. **Set up environment variables**:
-Create a `.env` file in the project root and add your Together AI API key:
-```
-TOGETHER_API_KEY=your_together_ai_api_key_here
-```
+### Basic Usage
 
-## Usage
-
-1. **Place your video file** in the project directory
-2. **Update the video filename** in the script:
 ```python
-video_file = "your_video_file.avi"  # Change this to your video file
+from video_analyzer import analyze_video_advanced
+
+# Analyze a video with default settings
+results = analyze_video_advanced("your_video.mp4")
+print(results['summary'])
 ```
-3. **Run the script**:
+
+### Advanced Usage
+
+```python
+# Detailed analysis for fitness/sports videos
+results = analyze_video_advanced(
+    video_path="workout_video.mp4",
+    mode="detailed",
+    analysis_type="detailed_analysis"
+)
+
+# Quick action detection
+results = analyze_video_advanced(
+    video_path="action_video.mp4",
+    mode="fast",
+    analysis_type="action_detection"
+)
+
+# Scene understanding for general content
+results = analyze_video_advanced(
+    video_path="general_video.mp4",
+    mode="standard",
+    analysis_type="scene_understanding"
+)
+```
+
+## ⚙️ Configuration
+
+### Analysis Modes
+
+| Mode | Frame Interval | Max Frames | Best For |
+|------|---------------|------------|----------|
+| **Detailed** | 15 frames | 20 | Technical analysis, form checking |
+| **Standard** | 30 frames | 15 | General purpose analysis |
+| **Fast** | 60 frames | 10 | Quick overview, action detection |
+
+### Analysis Types
+
+- **`action_detection`**: Focus on movements, actions, and activities
+- **`detailed_analysis`**: Comprehensive technical analysis with form evaluation
+- **`scene_understanding`**: Environmental context and object detection
+
+## 🏗️ Architecture
+
+### Core Components
+
+1. **Frame Extraction**: Intelligent sampling of video frames with timestamp tracking
+2. **VLM Analysis**: Multi-model analysis using state-of-the-art vision-language models
+3. **Summary Generation**: AI-powered synthesis of frame analyses into coherent narratives
+4. **Report Export**: Structured data export for further processing
+
+### Supported Models
+
+- **Llama-Vision-Free**: Latest free-tier Llama vision model
+- **Llama-3.2-90B-Vision-Instruct-Turbo**: High-performance 90B parameter model
+- **Llama-3.2-11B-Vision-Instruct-Turbo**: Balanced speed and quality option
+
+## 📁 Project Structure
+
+```
+advanced-video-analysis/
+├── main.py                 # Main analysis script
+├── video_analyzer.py       # Core analysis functions
+├── requirements.txt        # Python dependencies
+├── .env.example           # Environment variables template
+├── frames/                # Temporary frame storage (auto-created)
+├── reports/               # Analysis reports (auto-created)
+└── README.md             # This file
+```
+
+## 🎯 Use Cases
+
+### Fitness & Sports Analysis
+- **Form Analysis**: Evaluate exercise technique and posture
+- **Progress Tracking**: Compare performance across sessions
+- **Technique Improvement**: Identify areas for improvement
+
+### Content Analysis
+- **Action Recognition**: Identify and categorize activities
+- **Scene Understanding**: Analyze environments and contexts
+- **Quality Assessment**: Evaluate video content quality
+
+### Research Applications
+- **Behavioral Analysis**: Study movement patterns and behaviors
+- **Activity Classification**: Automated activity labeling
+- **Temporal Analysis**: Track changes over time
+
+## 📊 Output Format
+
+### Summary Output
+```python
+{
+    'summary': 'Comprehensive narrative description...',
+    'frame_analyses': [
+        {
+            'frame_number': 0,
+            'timestamp': 0.0,
+            'analysis': 'Detailed frame analysis...',
+            'model_used': 'meta-llama/Llama-3.2-90B-Vision-Instruct-Turbo'
+        }
+    ],
+    'total_frames_analyzed': 15
+}
+```
+
+### JSON Report Structure
+- Frame-by-frame analysis with timestamps
+- Model attribution for transparency
+- Comprehensive video summary
+- Technical metadata
+
+## 🔧 Configuration Options
+
+### Environment Variables
 ```bash
-python video_description_generator.py
+TOGETHER_API_KEY=your_api_key_here
 ```
 
-## Configuration
-
-You can customize the following parameters in the script:
-
-- `frame_interval`: Controls how often frames are extracted (default: 30 = every 30th frame)
-- `max_length`: Maximum length for generated captions (default: 16 tokens)
-- Batch size for frame processing (default: 4 frames per batch)
-
-## Dependencies
-
-### Core Libraries
-- **OpenCV (`cv2`)**: Video processing and frame extraction
-- **Transformers**: Hugging Face library for the ViT-GPT2 model
-- **PyTorch**: Deep learning framework for model inference
-- **PIL (Pillow)**: Image processing and format conversion
-
-### AI Models
-- **Vision Encoder-Decoder Model**: `nlpconnect/vit-gpt2-image-captioning`
-  - Vision Transformer (ViT) for image encoding
-  - GPT-2 for caption generation
-- **Together AI**: Meta-Llama-3-70B-Instruct-Turbo for text summarization
-
-### Utility Libraries
-- **tqdm**: Progress bars for batch processing
-- **python-dotenv**: Environment variable management
-- **together**: Together AI API client
-
-## Output
-
-The script will:
-1. Extract frames from your video and save them temporarily in a `frames/` folder
-2. Display progress as it processes batches of frames
-3. Generate individual captions for each frame
-4. Create a final coherent video description using AI summarization
-5. Print the final description to the console
-
-## Example Output
-
-```
-120 frames extracted.
-Processing frames: 100%|██████████| 30/30 [02:15<00:00,  4.50s/it]
-
-Final Video Description:
-The video shows a soccer penalty kick scenario taking place on a grass field. A player in a dark jersey approaches the ball positioned at the penalty spot while a goalkeeper in a bright colored uniform prepares to defend the goal. The scene captures the tense moment before the kick, with the field markings clearly visible and the goal posts framing the action.
+### Advanced Configuration
+```python
+ANALYSIS_CONFIG = {
+    "detailed": {
+        "frame_interval": 15,    # Extract every 15th frame
+        "batch_size": 2,         # Process 2 frames at once
+        "max_tokens": 500        # Maximum response length
+    }
+}
 ```
 
-## Notes
+## 🚨 Error Handling
 
-- The script automatically cleans up extracted frames after processing
-- GPU acceleration is used automatically if CUDA is available
-- The Together AI API requires an active subscription for the Llama-3 model
-- Processing time depends on video length and hardware capabilities
+The system includes robust error handling:
+- **Model Fallback**: Automatically tries alternative models if primary fails
+- **Frame Extraction**: Handles corrupted or unreadable video files
+- **API Rate Limiting**: Built-in delays to prevent API overuse
+- **Memory Management**: Automatic cleanup of temporary files
 
-## Troubleshooting
+## 💰 Cost Considerations
 
-- **CUDA out of memory**: Reduce batch size or use CPU processing
-- **API errors**: Verify your Together AI API key is correct and active
-- **Video format issues**: Ensure your video file is in a supported format (MP4, AVI, MOV, etc.)
-- **Missing dependencies**: Run `pip install -r requirements.txt` if you create a requirements file
+- **Frame Sampling**: Intelligent frame selection to minimize API calls
+- **Model Efficiency**: Automatic selection of most cost-effective models
+- **Batch Processing**: Optimized request batching where possible
 
-## License
+### Estimated Costs (Together AI)
+- **Fast Mode**: ~$0.10-0.50 per video
+- **Standard Mode**: ~$0.50-1.50 per video  
+- **Detailed Mode**: ~$1.50-5.00 per video
 
-[Add your license information here]
+## 🤝 Contributing
 
-## Contributing
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-[Add contribution guidelines here]
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Together AI** for providing access to state-of-the-art VLM models
+- **Meta AI** for the Llama vision models
+- **OpenCV** community for video processing capabilities
+
+## 🗺️ Roadmap
+
+- [ ] **Real-time analysis** support
+- [ ] **Batch video processing** capabilities
+- [ ] **Custom model fine-tuning** options
+- [ ] **Web interface** for easier usage
+- [ ] **Integration** with popular video platforms
+- [ ] **Mobile app** development
+
+---
+
+⭐ **Star this repository if you find it helpful!**
