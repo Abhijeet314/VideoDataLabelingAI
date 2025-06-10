@@ -203,17 +203,6 @@ The system includes robust error handling:
 - **API Rate Limiting**: Built-in delays to prevent API overuse
 - **Memory Management**: Automatic cleanup of temporary files
 
-## 💰 Cost Considerations
-
-- **Frame Sampling**: Intelligent frame selection to minimize API calls
-- **Model Efficiency**: Automatic selection of most cost-effective models
-- **Batch Processing**: Optimized request batching where possible
-
-### Estimated Costs (Together AI)
-- **Fast Mode**: ~$0.10-0.50 per video
-- **Standard Mode**: ~$0.50-1.50 per video  
-- **Detailed Mode**: ~$1.50-5.00 per video
-
 ## 🤝 Contributing
 
 1. Fork the repository
