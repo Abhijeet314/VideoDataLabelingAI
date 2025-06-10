@@ -127,13 +127,12 @@ results = analyze_video_advanced(
 ## 📁 Project Structure
 
 ```
-advanced-video-analysis/
+advanced-video-analysi/
 ├── main.py                 # Main analysis script
-├── video_analyzer.py       # Core analysis functions
 ├── requirements.txt        # Python dependencies
 ├── .env.example           # Environment variables template
 ├── frames/                # Temporary frame storage (auto-created)
-├── reports/               # Analysis reports (auto-created)
+├── video_analysis_report.json               # Analysis reports (auto-created)
 └── README.md             # This file
 ```
 
