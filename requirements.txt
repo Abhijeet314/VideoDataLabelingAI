@@ -1,0 +1,10 @@
+requests
+transformers
+torch
+torchvision 
+torchaudio
+pillow
+tqdm
+python-dotenv
+together
+python-opencv
